@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 通过context:component-scan元素扫描指定包下的控制器-->
+    <!--1) 扫描com.javaxl.zf及子子孙孙包下的控制器(扫描范围过大，耗时)-->
+    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="com.chen"/>
+
+    <!--2) 此标签默认注册DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter -->
+    <!--两个bean，这两个bean是spring MVC为@Controllers分发请求所必须的。并提供了数据绑定支持，-->
+    <!--@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson）-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--3) ViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- viewClass需要在pom中引入两个包：standard.jar and jstl.jar -->
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"></property>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 必须和用户JSP 的pageEncoding属性一致，以便正确解析表单的内容 -->
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!-- 文件最大大小(字节) 1024*1024*50=50M-->
+        <property name="maxUploadSize" value="52428800"></property>
+        <!--resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常-->
+        <property name="resolveLazily" value="true"/>
+    </bean>
+
+    <!--    &lt;!&ndash;4) 单独处理图片、样式、js等资源 &ndash;&gt;-->
+    <!--    &lt;!&ndash;<mvc:resources location="/css/" mapping="/css/**"/>&ndash;&gt;-->
+    <mvc:resources location="/static/" mapping="/static/**"/>
+    <!--    &lt;!&ndash;<mvc:resources location="/js/" mapping="/js/**"/>&ndash;&gt;-->
+
+
+</beans>
