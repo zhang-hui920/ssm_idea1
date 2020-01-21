@@ -21,7 +21,7 @@
 
     <!--添加jar包依赖-->
     <!--1.spring 5.0.2.RELEASE相关-->
-    <spring.version>5.0.2.RELEASE</spring.version>
+    <spring.version>5.2.3.RELEASE</spring.version>
     <!--2.mybatis相关-->
     <mybatis.version>3.4.5</mybatis.version>
     <!--mysql-->
