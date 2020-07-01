@@ -34,7 +34,7 @@
     <commons.dbcp2.version>2.1.1</commons.dbcp2.version>
     <commons.pool2.version>2.4.3</commons.pool2.version>
     <!--4.log日志相关-->
-    <log4j2.version>2.9.1</log4j2.version>
+    <log4j2.version>2.13.3</log4j2.version>
     <!--5.其他-->
     <junit.version>4.12</junit.version>
     <servlet.version>4.0.0</servlet.version>
