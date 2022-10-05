@@ -50,7 +50,7 @@
     <redis.spring.version>1.7.1.RELEASE</redis.spring.version>
 
     <!-- jackson -->
-    <jackson.version>2.9.3</jackson.version>
+    <jackson.version>2.12.6.1</jackson.version>
 
     <tomcat-jsp-api.version>8.0.47</tomcat-jsp-api.version>
 
